@@ -1,7 +1,28 @@
+using Microsoft.EntityFrameworkCore;
+using siu_smart_printing_service.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+// Get environment variables
+var serverName = Environment.GetEnvironmentVariable("SERVER_NAME");
+var databaseName = Environment.GetEnvironmentVariable("DATABASE");
+var password = Environment.GetEnvironmentVariable("PASSWORD");
+
+// Build the connection string
+//var connectionString = $"Server={serverName}; Database={databaseName}; ; MultipleActiveResultSets=True; TrustServerCertificate=True;";
+
+
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//    options.UseSqlServer(connectionString)
+//);
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PrinterApplication"))
+);
 
 var app = builder.Build();
 
