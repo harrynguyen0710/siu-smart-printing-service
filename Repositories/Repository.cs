@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using siu_smart_printing_service.Data;
 using siu_smart_printing_service.IRepositories;
+using siu_smart_printing_service.Models;
 
 namespace siu_smart_printing_service.Repositories
 {
@@ -38,6 +39,13 @@ namespace siu_smart_printing_service.Repositories
         public void Update(TEntity entity)
         {
             _dbSet.Update(entity);
+        }
+        public async Task<IEnumerable<Printers>> GetAllAsync()
+        {
+            var printers = await _context.Printers
+                .Include(r => r.location)
+                .ToListAsync();
+            return printers;
         }
     }
 }

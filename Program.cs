@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using siu_smart_printing_service.Areas.Admin.Services;
 using siu_smart_printing_service.Data;
 using siu_smart_printing_service.IRepositories;
 using siu_smart_printing_service.Repositories;
+using siu_smart_printing_service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,11 @@ var password = Environment.GetEnvironmentVariable("PASSWORD");
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<PrinterService>();
+builder.Services.AddScoped<FileTypeService>();
+builder.Services.AddScoped<PrintingLogService>();
+builder.Services.AddScoped<UploadedFileService>();
+
 
 
 
@@ -30,6 +37,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PrinterApplication"))
 );
+
 
 var app = builder.Build();
 
