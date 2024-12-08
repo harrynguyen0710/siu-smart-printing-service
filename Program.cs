@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using siu_smart_printing_service.Data;
+using siu_smart_printing_service.IRepositories;
+using siu_smart_printing_service.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,11 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 var serverName = Environment.GetEnvironmentVariable("SERVER_NAME");
 var databaseName = Environment.GetEnvironmentVariable("DATABASE");
 var password = Environment.GetEnvironmentVariable("PASSWORD");
+
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
 
 // Build the connection string
 //var connectionString = $"Server={serverName}; Database={databaseName}; ; MultipleActiveResultSets=True; TrustServerCertificate=True;";
@@ -40,6 +47,14 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
 
 app.MapControllerRoute(
     name: "default",
