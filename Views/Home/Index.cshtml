@@ -1,8 +1,229 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+﻿<html>
+<head>
+    <title>
+        Smart Student Printing Service
+    </title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white h-screen shadow-md">
+            <div class="p-4 flex items-center">
+                <img alt="Logo" class="w-10 h-10 mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/Vznp30U83D5EJhzpC9JIU8gZAtrxnLxvHtueYie76yYAlUsTA.jpg" width="40" />
+                <span class="text-xl font-semibold">
+                    Smart Student Printing Service
+                </span>
+            </div>
+            <nav class="mt-6">
+                <ul>
+                    <li class="px-4 py-2">
+                        <button class="w-full text-left text-blue-500 font-semibold">
+                            + New Print
+                        </button>
+                    </li>
+                    <li class="px-4 py-2">
+                        <a class="flex items-center text-gray-700" href="#">
+                            <i class="fas fa-home mr-2">
+                            </i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Printing
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-list mr-2">
+                                    </i>
+                                    Printer List
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-history mr-2">
+                                    </i>
+                                    Print History
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Storage
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-file-alt mr-2">
+                                    </i>
+                                    My Files
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-plug mr-2">
+                                    </i>
+                                    Integrations
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Accounts
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-user mr-2">
+                                    </i>
+                                    Profile
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-credit-card mr-2">
+                                    </i>
+                                    SIU Payments
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-cog mr-2">
+                                    </i>
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Help
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-question-circle mr-2">
+                                    </i>
+                                    Help Center
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-comment-dots mr-2">
+                                    </i>
+                                    Feedback
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-semibold">
+                    Home
+                </h1>
+                <div class="flex items-center">
+                    <div class="relative mr-4">
+                        <input class="border rounded-full py-2 px-4 pl-10" placeholder="Search..." type="text" />
+                        <i class="fas fa-search absolute left-3 top-2.5 text-gray-400">
+                        </i>
+                    </div>
+                    <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+                        <span class="text-white font-semibold">
+                            N
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-gray-600 mb-6">
+                Welcome to Smart Student Printing Service
+            </p>
+            <div class="grid grid-cols-3 gap-6 mb-6">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h2 class="text-gray-600">
+                        Balance
+                    </h2>
+                    <p class="text-3xl font-semibold">
+                        100
+                    </p>
+                    <p class="text-gray-400">
+                        Number of pages you can print
+                    </p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h2 class="text-gray-600">
+                        Total Print Request
+                    </h2>
+                    <p class="text-3xl font-semibold">
+                        4
+                    </p>
+                    <p class="text-gray-400">
+                        Number of times you have printed
+                    </p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h2 class="text-gray-600">
+                        Total Pages Printed
+                    </h2>
+                    <p class="text-3xl font-semibold">
+                        120
+                    </p>
+                    <p class="text-gray-400">
+                        Number of pages you have printed
+                    </p>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h2 class="text-gray-600 mb-4">
+                        Overview
+                    </h2>
+                    <img alt="Bar chart showing monthly print statistics" height="200" src="https://storage.googleapis.com/a1aa/image/tdPjHaqcuj5rOpfExI1Pq22Kw4o2F6rhYOqfPhrfJKQCKpYnA.jpg" width="400" />
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h2 class="text-gray-600 mb-4">
+                        Print Requests
+                    </h2>
+                    <ul>
+                        <li class="flex justify-between items-center mb-2">
+                            <div>
+                                <p class="text-blue-500">
+                                    Demo.pdf
+                                </p>
+                                <p class="text-gray-400 text-sm">
+                                    05 Nov 2023 07:00
+                                </p>
+                            </div>
+                            <span class="text-blue-500">
+                                Printing
+                            </span>
+                        </li>
+                        <li class="flex justify-between items-center mb-2">
+                            <div>
+                                <p class="text-blue-500">
+                                    Demo1.pdf
+                                </p>
+                                <p class="text-gray-400 text-sm">
+                                    04 Nov 2023 07:00
+                                </p>
+                            </div>
+                            <span class="text-red-500">
+                                Failed
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
