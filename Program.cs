@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using siu_smart_printing_service.Areas.Admin.Services;
 using siu_smart_printing_service.Data;
 using siu_smart_printing_service.IRepositories;
+using siu_smart_printing_service.Models;
 using siu_smart_printing_service.Repositories;
 using siu_smart_printing_service.Services;
 
@@ -18,12 +20,22 @@ var password = Environment.GetEnvironmentVariable("PASSWORD");
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IFileTypesRepository, FileTypesRepository>();
+builder.Services.AddScoped<IPrinterRepository, PrinterRepository>();
+builder.Services.AddScoped<IPrintingLogsRepository, PrintingLogsRepository>();
+builder.Services.AddScoped<IUploadedFileRepository, UploadedFileRepository>();
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();  
+
 builder.Services.AddScoped<PrinterService>();
 builder.Services.AddScoped<FileTypeService>();
 builder.Services.AddScoped<PrintingLogService>();
 builder.Services.AddScoped<UploadedFileService>();
+builder.Services.AddScoped<RoomService>();  
 
 
+builder.Services.AddIdentity<Users, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 
 // Build the connection string
@@ -53,19 +65,18 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-      name: "areas",
-      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-    );
-});
+
+
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

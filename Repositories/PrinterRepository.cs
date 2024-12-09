@@ -19,6 +19,8 @@ namespace siu_smart_printing_service.Repositories
         {
             var printers = await _context.Printers
                                 .Include(r => r.location)
+                                .ThenInclude(b => b.building)
+                                .ThenInclude(p => p.campus)
                                 .ToListAsync();
             return printers;
         }
@@ -27,6 +29,8 @@ namespace siu_smart_printing_service.Repositories
             var printers = await _context.Printers
                     .Where(p => p.isActive)
                     .Include(r => r.location)
+                    .ThenInclude(b => b.building)
+                    .ThenInclude(p => p.campus)
                     .ToListAsync();
             return printers;
         }
@@ -36,6 +40,8 @@ namespace siu_smart_printing_service.Repositories
             var printers = await _context.Printers
                     .Where(p => !p.isActive)
                     .Include(r => r.location)
+                    .ThenInclude(b => b.building)
+                    .ThenInclude(p => p.campus)
                     .ToListAsync();
             return printers;
         }
