@@ -18,6 +18,24 @@ namespace siu_smart_printing_service.Areas.Admin.Services
             await _unitOfWork.CompleteAsync();
         }
 
+        public async Task<FileTypes> GetFileTypeByName(string typeName)
+        {
+            var fileType = await _unitOfWork.FileTypesRepository.GetFileTypeByName(typeName);   
+            return fileType;
+        }
+
+        public async Task<FileTypes> GetById(int id)
+        {
+            var fileType = await _unitOfWork.FileTypesRepository.GetByIdAsync(id);
+            return fileType;
+        }
+
+        public async Task Edit(FileTypes fileType)
+        {
+            _unitOfWork.FileTypesRepository.Update(fileType);
+            await _unitOfWork.CompleteAsync();
+        }
+
         public async Task InActivate(FileTypes fileType)
         {
             _unitOfWork.FileTypesRepository.InActiveFile(fileType);

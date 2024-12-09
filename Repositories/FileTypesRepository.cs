@@ -20,6 +20,13 @@ namespace siu_smart_printing_service.Repositories
             fileTypes.isAccepted = true;
         }
 
+        public async Task<FileTypes> GetFileTypeByName(string fileType)
+        {
+            var type = await _context.FileTypes.Where(p => p.name == fileType).FirstOrDefaultAsync();
+            return type;
+        }
+
+
         public async Task<IEnumerable<FileTypes>> GetAllDisableFileTypes()
         {
             var fileTypes = await _context.FileTypes.Where(p => !p.isAccepted).ToListAsync();
