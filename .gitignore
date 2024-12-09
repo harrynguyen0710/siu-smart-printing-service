@@ -12,7 +12,9 @@
 .env
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
+.pdf
+.doc
+.docx
 # Mono auto generated files
 mono_crash.*
 

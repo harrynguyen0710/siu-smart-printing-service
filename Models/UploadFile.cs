@@ -7,9 +7,14 @@ namespace siu_smart_printing_service.Models
     {
         [Key]
         public int id { get; set; }
+        [Display(Name = "File name")]
         public string fileName { get; set; }
+
+        [Display(Name = "Upload time")]
         public DateTime updatedDate { get; set; }
-    
+
+        [Display(Name = "File size")]
+        public string fileSize { get;set; }
         public int fileTypeId { get; set; }
         public FileTypes fileTypes { get; set; }
 

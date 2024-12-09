@@ -10,6 +10,7 @@ namespace siu_smart_printing_service.IRepositories
         void InActiveFile(FileTypes fileTypes);
         void ActiveFile(FileTypes fileTypes);
 
+        Task<FileTypes> GetFileTypeByName(string fileType);
 
     }
 }
