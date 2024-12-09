@@ -1,0 +1,272 @@
+﻿@model IEnumerable<siu_smart_printing_service.Models.Printers>
+
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white h-screen shadow-md">
+            <div class="p-4">
+                <div class="flex items-center space-x-2">
+                    <img alt="Logo" class="w-10 h-10" height="40" src="https://storage.googleapis.com/a1aa/image/Yew7hdYUi4xcJ6suhgdLxTZHZVW89KtqxRvclgBXIkP4tK2JA.jpg" width="40" />
+                    <span class="text-lg font-semibold">
+                        Smart Student Printing Service
+                    </span>
+                </div>
+            </div>
+            <nav class="mt-6">
+                <ul>
+                    <li class="px-4 py-2">
+                        <button class="w-full text-left text-blue-600 font-semibold">
+                            <i class="fas fa-plus-circle">
+                            </i>
+                            New Print
+                        </button>
+                    </li>
+                    <li class="px-4 py-2">
+                        <a class="flex items-center space-x-2 text-gray-700" href="#">
+                            <i class="fas fa-home">
+                            </i>
+                            <span>
+                                Home
+                            </span>
+                        </a>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Printing
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center space-x-2 text-gray-700" href="#">
+                                    <i class="fas fa-print">
+                                    </i>
+                                    <span>
+                                        Printer List
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center space-x-2 text-gray-700" href="#">
+                                    <i class="fas fa-history">
+                                    </i>
+                                    <span>
+                                        Print History
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Storage
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center space-x-2 text-gray-700" href="#">
+                                    <i class="fas fa-folder">
+                                    </i>
+                                    <span>
+                                        My Files
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center space-x-2 text-gray-700" href="#">
+                                    <i class="fas fa-plug">
+                                    </i>
+                                    <span>
+                                        Integrations
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Accounts
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center space-x-2 text-gray-700" href="#">
+                                    <i class="fas fa-user">
+                                    </i>
+                                    <span>
+                                        Profile
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center space-x-2 text-gray-700" href="#">
+                                    <i class="fas fa-credit-card">
+                                    </i>
+                                    <span>
+                                        SIU Payments
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center space-x-2 text-gray-700" href="#">
+                                    <i class="fas fa-cog">
+                                    </i>
+                                    <span>
+                                        Settings
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Admin
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center space-x-2 text-gray-700" href="#">
+                                    <i class="fas fa-tools">
+                                    </i>
+                                    <span>
+                                        System Configuration
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center space-x-2 text-gray-700" href="#">
+                                    <i class="fas fa-print">
+                                    </i>
+                                    <span>
+                                        Manage Printers
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Help
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center space-x-2 text-gray-700" href="#">
+                                    <i class="fas fa-question-circle">
+                                    </i>
+                                    <span>
+                                        Help Center
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center space-x-2 text-gray-700" href="#">
+                                    <i class="fas fa-comment-dots">
+                                    </i>
+                                    <span>
+                                        Feedback
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-semibold">
+                    Printers
+                </h1>
+                <a asp-controller="Printer" asp-action="Add" class="bg-blue-600 text-white py-2 px-4 rounded">
+                    Add Printer
+                </a>
+            </div>
+            <p class="text-gray-600 mb-4">
+                Manage printers in your school
+            </p>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 border-b">Brand</th>
+                            <th class="py-2 px-4 border-b">Model</th>
+                            <th class="py-2 px-4 border-b">Location</th>
+                            <th class="py-2 px-4 border-b">Paper Count</th>
+                            <th class="py-2 px-4 border-b">Features</th>
+                            <th class="py-2 px-4 border-b">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var printer in Model)
+                        {
+                            <tr>
+                                <td class="py-2 px-4 border-b">@printer.brand</td>
+                                <td class="py-2 px-4 border-b">@printer.printerName</td>
+                                <td class="py-2 px-4 border-b">@printer.location.roomName, @printer.location.building.buildingName</td>
+                                <td class="py-2 px-4 border-b">@printer.paperCount</td>
+                                <td class="py-2 px-4 border-b">
+                                    <span class="bg-gray-200 text-gray-700 py-1 px-2 rounded-full text-xs">Print</span>
+                                    <span class="bg-gray-200 text-gray-700 py-1 px-2 rounded-full text-xs">Scan</span>
+                                    <span class="bg-gray-200 text-gray-700 py-1 px-2 rounded-full text-xs">Color</span>
+                                    <span class="bg-gray-200 text-gray-700 py-1 px-2 rounded-full text-xs">Copy</span>
+                                </td>
+
+                                <td class="py-2 px-4 border-b">
+                                    <a asp-controller="Printer" asp-action="Edit" asp-route-printerId="@printer.printerId" class="text-gray-600 hover:text-gray-900">
+                                        <i class="fas fa-pen"></i>
+                                        Edit
+                                    </a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- Modal -->
+<div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-1/3">
+        <h2 class="text-xl font-semibold mb-4">Add Printer</h2>
+        <div class="mb-4">
+            <label class="block text-gray-700">State</label>
+            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+                <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+            </div>
+            <span id="toggle-label" class="text-gray-700">Disabled</span>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700">Printer Address</label>
+            <input type="text" class="w-full px-3 py-2 border rounded" placeholder="Enter printer address" />
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700">Brand Name</label>
+            <input type="text" class="w-full px-3 py-2 border rounded" placeholder="Enter brand name" />
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700">Model Name</label>
+            <input type="text" class="w-full px-3 py-2 border rounded" placeholder="Enter model name" />
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700">Model Name</label>
+            <input type="text" class="w-full px-3 py-2 border rounded" placeholder="Enter description" />
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700">Paper Count</label>
+            <input type="number" class="w-full px-3 py-2 border rounded" placeholder="Enter paper count" />
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700">Location</label>
+            <input type="text" class="w-full px-3 py-2 border rounded" placeholder="Enter location" />
+        </div>
+
+        <div class="flex justify-end">
+            <button class="bg-gray-500 text-white py-2 px-4 rounded mr-2" onclick="toggleModal()">Cancel</button>
+            <button class="bg-blue-600 text-white py-2 px-4 rounded">Save</button>
+        </div>
+        <script>
+            //function toggleModal() {
+            //    const modal = document.getElementById("modal");
+            //    modal.classList.toggle("hidden");
+            //}
+        </script>
+

@@ -7,6 +7,7 @@
         IPrinterRepository PrinterRepository { get; }
         IPrintingLogsRepository PrintingLogsRepository { get; }
         IUploadedFileRepository UploadedFileRepository { get; }
+        IRoomRepository RoomRepository { get; }
         Task<int> CompleteAsync();
     }
 }

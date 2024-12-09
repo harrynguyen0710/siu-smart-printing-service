@@ -11,15 +11,17 @@ namespace siu_smart_printing_service.Repositories
         private IPrinterRepository _printerRepository;
         private IPrintingLogsRepository _printinglogRepository;
         private IUploadedFileRepository _uploadedFileRepository;
+        private IRoomRepository _roomRepository;
 
         public UnitOfWork(ApplicationDbContext context, IFileTypesRepository fileTypeRepository, IPrinterRepository printerRepository,
-            IPrintingLogsRepository printinglogRepository, IUploadedFileRepository uploadedFileRepository)
+            IPrintingLogsRepository printinglogRepository, IUploadedFileRepository uploadedFileRepository, IRoomRepository roomRepository)
         {
             _context = context;
             _fileTypeRepository = fileTypeRepository;
             _printerRepository = printerRepository;
             _printinglogRepository = printinglogRepository;
             _uploadedFileRepository = uploadedFileRepository;
+            _roomRepository = roomRepository;
         }
 
         public IRepository<TEntity> Repository<TEntity>() where TEntity : class
@@ -33,6 +35,15 @@ namespace siu_smart_printing_service.Repositories
 
             return (IRepository<TEntity>)_repositories[type];
         }
+
+        public IRoomRepository RoomRepository
+        {
+            get
+            {
+                return _roomRepository ??= new RoomRepository(_context);
+            }
+        }
+
 
         public IUploadedFileRepository UploadedFileRepository
         {

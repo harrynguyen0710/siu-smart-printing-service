@@ -1,0 +1,199 @@
+﻿@model IEnumerable<siu_smart_printing_service.Models.Printers>
+
+<body class="bg-gray-100">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white h-screen shadow-md">
+            <div class="p-4 flex items-center">
+                <img alt="Logo" class="w-10 h-10 mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/Vznp30U83D5EJhzpC9JIU8gZAtrxnLxvHtueYie76yYAlUsTA.jpg" width="40" />
+                <span class="text-xl font-semibold">
+                    Smart Student Printing Service
+                </span>
+            </div>
+            <nav class="mt-6">
+                <ul>
+                    <li class="px-4 py-2">
+                        <button class="w-full text-left text-blue-500 font-semibold">
+                            + New Print
+                        </button>
+                    </li>
+                    <li class="px-4 py-2">
+                        <a class="flex items-center text-gray-700" href="#">
+                            <i class="fas fa-home mr-2">
+                            </i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Printing
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-list mr-2">
+                                    </i>
+                                    Printer List
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-history mr-2">
+                                    </i>
+                                    Print History
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Storage
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-file-alt mr-2">
+                                    </i>
+                                    My Files
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-plug mr-2">
+                                    </i>
+                                    Integrations
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Accounts
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-user mr-2">
+                                    </i>
+                                    Profile
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-credit-card mr-2">
+                                    </i>
+                                    SIU Payments
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-cog mr-2">
+                                    </i>
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Help
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-question-circle mr-2">
+                                    </i>
+                                    Help Center
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-comment-dots mr-2">
+                                    </i>
+                                    Feedback
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">
+                    Printers
+                </h1>
+                <div class="flex items-center">
+                    <input class="border rounded-md p-2 mr-4" placeholder="Search..." type="text" />
+                    <button class="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-300">
+                        <img alt="User Avatar" class="w-full h-full object-cover" height="40" src="https://storage.googleapis.com/a1aa/image/gZXuzUiCqbKbGJUeQx6K8D7Kc2MnIeNhdkaM4XbeppDKFqYnA.jpg" width="40" />
+                    </button>
+                </div>
+            </div>
+            <p class="text-gray-600 mb-6">
+                All printers available in your school
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Printer Card -->
+                @foreach (var printer in Model)
+                {
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <img alt="Brother Printer" class="mr-4" height="50" src="https://storage.googleapis.com/a1aa/image/kH3KVGvY43qbKBls99uxGVyAL4Z0Cq0DAPureXyOhj7PfUsTA.jpg" width="50" />
+                            <div>
+                                <h2 class="font-bold">
+                                    @printer.brand
+                                </h2>
+                                <p class="text-gray-500">
+                                    @printer.printerName
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center text-gray-700 mb-2">
+                                <i class="fa-solid fa-globe">
+
+                                </i>
+                                @if (printer.isActive)
+                                {
+                                    <p>Available</p>
+                                }
+                                else
+                                {
+                                    <p>Unavailable</p>
+                                }
+                            </div>
+
+                            <div class="flex items-center text-gray-700 mb-2">
+                                <i class="fas fa-file-alt mr-2">
+                                </i>
+                                @printer.paperCount
+                            </div>
+
+                            <div class="flex items-center text-gray-700 mb-2">
+                                <i class="fa-solid fa-info">
+
+                                </i>
+                                @printer.description
+                            </div>
+
+                            <div class="flex items-center text-gray-700">
+                                <i class="fas fa-map-marker-alt mr-2">
+                                </i>
+                                @printer.location.roomName, @printer.location.building.buildingName, @printer.location.building.campus.campusName
+                            </div>
+                        </div>
+                        <button class="w-full bg-gray-100 text-gray-700 py-2 rounded-md">
+                            Print
+                            <i class="fas fa-chevron-right ml-2">
+                            </i>
+                        </button>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+</body>

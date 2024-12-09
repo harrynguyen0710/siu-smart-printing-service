@@ -12,8 +12,21 @@ namespace siu_smart_printing_service.Areas.Admin.Services
         }
         public async Task AddPrinter(Printers printer)
         {
+            Console.WriteLine($"Status:: {printer.isActive}");
             _unitOfWork.PrinterRepository.Add(printer); 
             await _unitOfWork.CompleteAsync();
+        }
+
+        public async Task EditPrinter(Printers printer)
+        {
+            _unitOfWork.PrinterRepository.Update(printer);
+            await _unitOfWork.CompleteAsync();
+        }
+
+        public async Task<Printers> GetById(int printerId)
+        {
+            var printer = await _unitOfWork.PrinterRepository.GetByIdAsync(printerId);
+            return printer;
         }
 
         public async Task<IEnumerable<Printers>> GetAllPrinters()
