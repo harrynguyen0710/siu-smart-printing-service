@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using siu_smart_printing_service.Areas.Admin.Services;
 using siu_smart_printing_service.Models;
@@ -26,34 +25,54 @@ namespace siu_smart_printing_service.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var rooms = await _roomService.GetAllAsync(); 
+            var rooms = await _roomService.GetAllAsync();
             ViewBag.Rooms = new SelectList(rooms, "roomId", "roomName");
             return View();
         }
 
-        [HttpPost]  
+        [HttpPost]
         public async Task<IActionResult> Add(Printers printer)
         {
-            await _printerService.AddPrinter(printer);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                await _printerService.AddPrinter(printer);
+
+                TempData["SuccessMessage"] = "Operation successful";
+
+                return RedirectToAction("Index");
+            }
+
+            var rooms = await _roomService.GetAllAsync();
+            ViewBag.Rooms = new SelectList(rooms, "roomId", "roomName");
+            return View(printer);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int printerId) 
+        public async Task<IActionResult> Edit(int printerId)
         {
             var rooms = await _roomService.GetAllAsync();
             var printer = await _printerService.GetById(printerId);
-            
+
             ViewBag.Rooms = new SelectList(rooms, "roomId", "roomName");
-            
+
             return View(printer);
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(Printers printer)
         {
-            await _printerService.EditPrinter(printer);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                await _printerService.EditPrinter(printer);
+
+                TempData["SuccessMessage"] = "Operation successful";
+
+                return RedirectToAction("Index");
+            }
+
+            var rooms = await _roomService.GetAllAsync();
+            ViewBag.Rooms = new SelectList(rooms, "roomId", "roomName");
+            return View(printer);
         }
 
 
