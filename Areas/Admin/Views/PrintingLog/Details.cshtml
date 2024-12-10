@@ -1,0 +1,196 @@
+﻿@model IEnumerable<siu_smart_printing_service.Models.PrintingLogs>
+<html>
+<head>
+    <title>
+        Print History
+    </title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white h-screen shadow-md">
+            <div class="p-4 flex items-center">
+                <img alt="Logo" class="w-10 h-10 mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/Vznp30U83D5EJhzpC9JIU8gZAtrxnLxvHtueYie76yYAlUsTA.jpg" width="40" />
+                <span class="text-xl font-semibold">
+                    Smart Student Printing Service
+                </span>
+            </div>
+            <nav class="mt-6">
+                <ul>
+                    <li class="px-4 py-2">
+                        <button class="w-full text-left text-blue-500 font-semibold">
+                            + New Print
+                        </button>
+                    </li>
+                    <li class="px-4 py-2">
+                        <a class="flex items-center text-gray-700" href="#">
+                            <i class="fas fa-home mr-2">
+                            </i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Printing
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-list mr-2">
+                                    </i>
+                                    Printer List
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-history mr-2">
+                                    </i>
+                                    Print History
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Storage
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-file-alt mr-2">
+                                    </i>
+                                    My Files
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-plug mr-2">
+                                    </i>
+                                    Integrations
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Accounts
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-user mr-2">
+                                    </i>
+                                    Profile
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-credit-card mr-2">
+                                    </i>
+                                    SIU Payments
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-cog mr-2">
+                                    </i>
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Help
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-question-circle mr-2">
+                                    </i>
+                                    Help Center
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-comment-dots mr-2">
+                                    </i>
+                                    Feedback
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">
+                    History
+                </h1>
+                <div class="flex items-center">
+                    <input class="border rounded-md p-2 mr-4" placeholder="Search..." type="text" />
+                    <button class="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-300">
+                        <img alt="User Avatar" class="w-full h-full object-cover" height="40" src="https://storage.googleapis.com/a1aa/image/gZXuzUiCqbKbGJUeQx6K8D7Kc2MnIeNhdkaM4XbeppDKFqYnA.jpg" width="40" />
+                    </button>
+                </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+                Print history and ongoing print jobs
+            </p>
+
+            <table class="min-w-full bg-white border">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b">
+                            ID
+                        </th>
+                        <th class="py-2 px-4 border-b">
+                            File Name
+                        </th>
+                        <th class="py-2 px-4 border-b">
+                            Start Time
+                        </th>
+                        <th class="py-2 px-4 border-b">
+                            Printer
+                        </th>
+                        <th class="py-2 px-4 border-b">
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var log in Model)
+                    {
+
+                        <tr>
+                            <td class="py-2 px-4 border-b">
+                                @log.id
+                            </td>
+                            <td class="py-2 px-4 border-b text-blue-600">
+                                <a href="#">
+                                    @log.uploadFile.fileName
+                                </a>
+                            </td>
+                            <td class="py-2 px-4 border-b">
+                                @log.endDate
+                            </td>
+                            <td class="py-2 px-4 border-b">
+                                @log.printer.printerName
+                            </td>
+                            <td class="py-2 px-4 border-b text-blue-600">
+                                @log.status
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
