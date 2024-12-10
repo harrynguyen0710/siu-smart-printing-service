@@ -10,7 +10,7 @@ namespace siu_smart_printing_service.Areas.Admin.Controllers
     {
         private readonly ConfigurationService _configurationService;
         private readonly FileTypeService _fileTypeService;
-        public ConfigurationController(ConfigurationService configurationService, FileTypeService fileTypeService) 
+        public ConfigurationController(ConfigurationService configurationService, FileTypeService fileTypeService)
         {
             _configurationService = configurationService;
             _fileTypeService = fileTypeService;
@@ -32,7 +32,7 @@ namespace siu_smart_printing_service.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
-            var config = await _configurationService.GetById(id);   
+            var config = await _configurationService.GetById(id);
             return View(config);
         }
 
@@ -40,6 +40,7 @@ namespace siu_smart_printing_service.Areas.Admin.Controllers
         public async Task<IActionResult> Update(Configurations configurations)
         {
             await _configurationService.Update(configurations);
+            TempData["SuccessMessage"] = "Configuration updated successfully!";
             return RedirectToAction("Index");
         }
     }
