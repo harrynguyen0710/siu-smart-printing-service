@@ -22,12 +22,12 @@
             <nav class="mt-6">
                 <ul>
                     <li class="px-4 py-2">
-                        <button class="w-full text-left text-blue-500 font-semibold">
+                        <a asp-controller="Printer" asp-action="PrintDocument" class="w-full text-left text-blue-500 font-semibold">
                             + New Print
-                        </button>
+                        </a>
                     </li>
                     <li class="px-4 py-2">
-                        <a class="flex items-center text-gray-700" href="#">
+                        <a asp-controller="Home" asp-action="Index" class="flex items-center text-gray-700">
                             <i class="fas fa-home mr-2">
                             </i>
                             Home
@@ -39,14 +39,14 @@
                         </span>
                         <ul class="ml-4 mt-2">
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a asp-controller="Printer" asp-action="Index" class="flex items-center text-gray-700">
                                     <i class="fas fa-list mr-2">
                                     </i>
                                     Printer List
                                 </a>
                             </li>
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a asp-controller="PrintingLog" asp-action="Index" class="flex items-center text-gray-700">
                                     <i class="fas fa-history mr-2">
                                     </i>
                                     Print History
@@ -60,7 +60,7 @@
                         </span>
                         <ul class="ml-4 mt-2">
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a asp-controller="UploadedFile" asp-action="Index" class="flex items-center text-gray-700">
                                     <i class="fas fa-file-alt mr-2">
                                     </i>
                                     My Files
@@ -81,21 +81,21 @@
                         </span>
                         <ul class="ml-4 mt-2">
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a class="flex items-center text-gray-700">
                                     <i class="fas fa-user mr-2">
                                     </i>
                                     Profile
                                 </a>
                             </li>
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a class="flex items-center text-gray-700">
                                     <i class="fas fa-credit-card mr-2">
                                     </i>
                                     SIU Payments
                                 </a>
                             </li>
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a asp-controller="Configuration" asp-action="Index" class="flex items-center text-gray-700">
                                     <i class="fas fa-cog mr-2">
                                     </i>
                                     Settings
@@ -143,13 +143,14 @@
                 </div>
             </div>
             <div class="bg-white p-6 rounded shadow-md">
-                @foreach (var config in Model.Configs)
-                {
+                <form asp-controller="Configuration" asp-action="Update" method="post">
+                    <input type="hidden" asp-for="@Model.Config.id" value="@Model.Config.id"/>
                     <div class="mb-4">
                         <label class="block text-gray-700 font-semibold mb-2">
                             Default Page Balance
                         </label>
-                        <div class="w-full border rounded px-4 py-2" type="text">@config.defaultBalance</div>/>
+
+                        <input asp-for="@Model.Config.defaultBalance" class="w-full border rounded px-4 py-2" type="text" value="@Model.Config.defaultBalance" />
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 font-semibold mb-2">
@@ -159,56 +160,68 @@
                             On this date, the default page balance will be granted to all students
                         </p>
                         <div class="flex space-x-4">
-                            <div class="w-1/4 border rounded px-4 py-2">@config.defaultDate</div>/>
+                            <label asp-for="@Model.Config.defaultDate" class="block text-sm font-medium text-gray-700">Select Date and Time</label>
+                            <input asp-for="@Model.Config.defaultDate" id="datetimeInput" type="datetime-local"
+                                   class="w-1/4 border border-gray-300 rounded-md px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   value="@Model.Config.defaultDate" />
                         </div>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 font-semibold mb-2">
                             Max File Size (in bytes)
                         </label>
-                        <input class="w-full border rounded px-4 py-2" type="text" value="@config.maxSizeBytes" readonly />
+                        <input asp-for="@Model.Config.maxSizeBytes" class="w-full border rounded px-4 py-2" type="text" value="@Model.Config.maxSizeBytes"  />
                     </div>
 
-                }
-                <div class="mb-6">
-                    <label class="block text-gray-700 font-semibold mb-4">
-                        Permitted File Types
-                    </label>
-                    <div class="space-y-4">
-                        @foreach (var type in Model.FileTypes)
-                        {
-                            <div class="flex items-center space-x-4 bg-white-50 p-4">
-                                <div class="w-1/3">
-                                    <label for="type-name" class="block text-sm font-semibold text-gray-600 mb-2">Type</label>
-                                    <input readonly id="type-name" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value="@type.name" />
+
+                    <div class="mb-6">
+
+                        <label class="block text-gray-700 font-semibold mb-4">
+                            Permitted File Types
+                        </label>
+                        <div class="space-y-4">
+                            @foreach (var type in Model.FileTypes)
+                            {
+                                <div class="flex items-center space-x-4 bg-white-50 p-4">
+                                    <div class="w-1/3">
+                                        <label for="type-name" class="block text-sm font-semibold text-gray-600 mb-2">Type</label>
+                                        <input readonly id="type-name" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value="@type.name" />
+                                    </div>
+                                    <div class="w-1/3">
+                                        <label for="description" class="block text-sm font-semibold text-gray-600 mb-2">Description</label>
+                                        <input readonly id="description" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value="@type.description" />
+                                    </div>
+                                    <div class="w-1/4 flex justify-center items-center">
+                                        <label class="inline-flex items-center">
+                                            <input disabled
+                                                   class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+                                                   type="checkbox"
+                                                   @(type.isAccepted ? "checked" : null) />
+                                            <span class="ml-2 text-gray-700">Allow Upload</span>
+                                        </label>
+                                    </div>
+                                    <a asp-controller="FileType"
+                                       asp-action="Edit"
+                                       asp-route-id="@type.id"
+                                       class="btn btn-primary btn-sm">
+                                        Edit
+                                    </a>
+
+
                                 </div>
-                                <div class="w-1/3">
-                                    <label for="description" class="block text-sm font-semibold text-gray-600 mb-2">Description</label>
-                                    <input readonly id="description" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value="@type.description" />
-                                </div>
-                                <div class="w-1/4 flex justify-center items-center">
-                                    <label class="inline-flex items-center">
-                                        <input disabled
-                                               class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-                                               type="checkbox"
-                                               @(type.isAccepted ? "checked" : null) />
-                                        <span class="ml-2 text-gray-700">Allow Upload</span>
-                                    </label>
-                                </div>
 
+                            }
 
-                            </div>
-
-                        }
-
+                        </div>
                     </div>
-                </div>
 
-                <div class="mt-6 flex justify-end">
-                    <button class="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-700">
-                        Update
-                    </button>
-                </div>
+                    <div class="mt-6 flex justify-end">
+                        <button type="submit" class="btn btn-outline-success btn-sm">
+                            <i class="fas fa-edit"></i>Update
+                        </button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

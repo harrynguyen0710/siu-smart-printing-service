@@ -33,13 +33,20 @@ namespace siu_smart_printing_service.Areas.Admin.Controllers
         public async Task<IActionResult> Update(int id)
         {
             var config = await _configurationService.GetById(id);
-            return View(config);
+            var fileTypes = await _fileTypeService.GetAllAsync();
+
+            var configModel = new ConfigurationViewModel
+            {
+                Config = config,
+                FileTypes = fileTypes,
+            };
+            return View(configModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(Configurations configurations)
+        public async Task<IActionResult> Update(ConfigurationViewModel configurations)
         {
-            await _configurationService.Update(configurations);
+            await _configurationService.Update(configurations.Config);
             TempData["SuccessMessage"] = "Configuration updated successfully!";
             return RedirectToAction("Index");
         }
