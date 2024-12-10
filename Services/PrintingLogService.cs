@@ -11,6 +11,12 @@ namespace siu_smart_printing_service.Services
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<IEnumerable<PrintingLogs>> GetAllAsync()
+        {
+            var logs = await _unitOfWork.PrintingLogsRepository.GetAllPrintingLogs();
+            return logs;
+        }
+
         public async Task PrintDocument(PrintingLogs printingLog)
         {
             _unitOfWork.PrintingLogsRepository.Add(printingLog);

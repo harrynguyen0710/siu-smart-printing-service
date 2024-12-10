@@ -10,6 +10,14 @@ namespace siu_smart_printing_service.Repositories
         public PrintingLogsRepository(ApplicationDbContext context) : base(context)
         {
         }
+        public async Task<IEnumerable<PrintingLogs>> GetAllPrintingLogs()
+        {
+            var query = await _context.PrintersLogs
+                .Include(ft => ft.printer)
+                .Include(pt => pt.uploadFile)
+                .ToListAsync();
+            return query;
+        }
 
         public async Task<IEnumerable<PrintingLogs>> GetAllPrintingLogsByUserId(string userId)
         {

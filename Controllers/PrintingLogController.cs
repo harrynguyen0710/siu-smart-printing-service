@@ -83,6 +83,7 @@ namespace siu_smart_printing_service.Controllers
                 return RedirectToAction("PrintDocument", new { printerId = printer.printerId });
             }
 
+
             var remainingPages = printer.paperCount - model.PrintingLog.numberOfCopies;
             if (remainingPages < 0) 
             {
@@ -93,7 +94,7 @@ namespace siu_smart_printing_service.Controllers
             var remaininBalance = user.balance - model.PrintingLog.numberOfCopies;
             if (remaininBalance < 0)
             {
-                TempData["InvalidBalance"] = "You do not enough page for printing!";
+                TempData["InvalidBalance"] = "You do not have enough page for printing!";
                 return RedirectToAction("PrintDocument", new { printerId = printer.printerId });
             }
 
