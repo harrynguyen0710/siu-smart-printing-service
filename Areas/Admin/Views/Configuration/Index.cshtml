@@ -10,7 +10,113 @@
     <div class="flex">
         <!-- Sidebar -->
         <div class="w-64 bg-white h-screen shadow-md">
-            <!-- Sidebar content -->
+            <nav class="mt-6">
+                <ul>
+                    <li class="px-4 py-2">
+                        <a asp-controller="Printer" asp-action="PrintDocument" class="w-full text-left text-blue-500 font-semibold">
+                            + New Print
+                        </a>
+                    </li>
+                    <li class="px-4 py-2">
+                        <a asp-controller="Home" asp-action="Index" class="flex items-center text-gray-700">
+                            <i class="fas fa-home mr-2">
+                            </i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Printing
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a asp-controller="Printer" asp-action="Index" class="flex items-center text-gray-700">
+                                    <i class="fas fa-list mr-2">
+                                    </i>
+                                    Printer List
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a asp-controller="PrintingLog" asp-action="Index" class="flex items-center text-gray-700">
+                                    <i class="fas fa-history mr-2">
+                                    </i>
+                                    Print History
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Storage
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a asp-controller="UploadedFile" asp-action="Index" class="flex items-center text-gray-700">
+                                    <i class="fas fa-file-alt mr-2">
+                                    </i>
+                                    My Files
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-plug mr-2">
+                                    </i>
+                                    Integrations
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Accounts
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700">
+                                    <i class="fas fa-user mr-2">
+                                    </i>
+                                    Profile
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700">
+                                    <i class="fas fa-credit-card mr-2">
+                                    </i>
+                                    SIU Payments
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a asp-controller="Configuration" asp-action="Index" class="flex items-center text-gray-700">
+                                    <i class="fas fa-cog mr-2">
+                                    </i>
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Help
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-question-circle mr-2">
+                                    </i>
+                                    Help Center
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-comment-dots mr-2">
+                                    </i>
+                                    Feedback
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
         </div>
 
         <!-- Main Content -->
@@ -81,7 +187,7 @@
                 </div>
 
                 <div class="mt-6 flex justify-end">
-                    <button class="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-700">Update</button>
+                    <a asp-controller="Configuration" asp-action="Update" asp-route-id="1" class="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-700">Update</a>
                 </div>
             </div>
         </div>

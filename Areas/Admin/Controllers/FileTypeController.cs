@@ -43,8 +43,12 @@ namespace siu_smart_printing_service.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(FileTypes type)
         {
+            Console.WriteLine($"id:: {type.id}");
+            Console.WriteLine($"name:: {type.name}");
+            Console.WriteLine($"description:: {type.description}");
+
             await _fileTypeService.Edit(type);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Configuration");
         }
     }
 }

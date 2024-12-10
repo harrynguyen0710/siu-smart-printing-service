@@ -17,19 +17,15 @@
             <nav class="mt-6">
                 <ul>
                     <li class="px-4 py-2">
-                        <button class="w-full text-left text-blue-600 font-semibold">
-                            <i class="fas fa-plus-circle">
-                            </i>
-                            New Print
-                        </button>
+                        <a asp-controller="Printer" asp-action="PrintDocument" class="w-full text-left text-blue-500 font-semibold">
+                            + New Print
+                        </a>
                     </li>
                     <li class="px-4 py-2">
-                        <a class="flex items-center space-x-2 text-gray-700" href="#">
-                            <i class="fas fa-home">
+                        <a asp-controller="Home" asp-action="Index" class="flex items-center text-gray-700">
+                            <i class="fas fa-home mr-2">
                             </i>
-                            <span>
-                                Home
-                            </span>
+                            Home
                         </a>
                     </li>
                     <li class="px-4 py-2">
@@ -38,21 +34,17 @@
                         </span>
                         <ul class="ml-4 mt-2">
                             <li class="py-1">
-                                <a class="flex items-center space-x-2 text-gray-700" href="#">
-                                    <i class="fas fa-print">
+                                <a asp-controller="Printer" asp-action="Index" class="flex items-center text-gray-700">
+                                    <i class="fas fa-list mr-2">
                                     </i>
-                                    <span>
-                                        Printer List
-                                    </span>
+                                    Printer List
                                 </a>
                             </li>
                             <li class="py-1">
-                                <a class="flex items-center space-x-2 text-gray-700" href="#">
-                                    <i class="fas fa-history">
+                                <a asp-controller="PrintingLog" asp-action="Index" class="flex items-center text-gray-700">
+                                    <i class="fas fa-history mr-2">
                                     </i>
-                                    <span>
-                                        Print History
-                                    </span>
+                                    Print History
                                 </a>
                             </li>
                         </ul>
@@ -63,21 +55,17 @@
                         </span>
                         <ul class="ml-4 mt-2">
                             <li class="py-1">
-                                <a class="flex items-center space-x-2 text-gray-700" href="#">
-                                    <i class="fas fa-folder">
+                                <a asp-controller="UploadedFile" asp-action="Index" class="flex items-center text-gray-700">
+                                    <i class="fas fa-file-alt mr-2">
                                     </i>
-                                    <span>
-                                        My Files
-                                    </span>
+                                    My Files
                                 </a>
                             </li>
                             <li class="py-1">
-                                <a class="flex items-center space-x-2 text-gray-700" href="#">
-                                    <i class="fas fa-plug">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-plug mr-2">
                                     </i>
-                                    <span>
-                                        Integrations
-                                    </span>
+                                    Integrations
                                 </a>
                             </li>
                         </ul>
@@ -88,55 +76,24 @@
                         </span>
                         <ul class="ml-4 mt-2">
                             <li class="py-1">
-                                <a class="flex items-center space-x-2 text-gray-700" href="#">
-                                    <i class="fas fa-user">
+                                <a class="flex items-center text-gray-700">
+                                    <i class="fas fa-user mr-2">
                                     </i>
-                                    <span>
-                                        Profile
-                                    </span>
+                                    Profile
                                 </a>
                             </li>
                             <li class="py-1">
-                                <a class="flex items-center space-x-2 text-gray-700" href="#">
-                                    <i class="fas fa-credit-card">
+                                <a class="flex items-center text-gray-700">
+                                    <i class="fas fa-credit-card mr-2">
                                     </i>
-                                    <span>
-                                        SIU Payments
-                                    </span>
+                                    SIU Payments
                                 </a>
                             </li>
                             <li class="py-1">
-                                <a class="flex items-center space-x-2 text-gray-700" href="#">
-                                    <i class="fas fa-cog">
+                                <a asp-controller="Configuration" asp-action="Index" class="flex items-center text-gray-700">
+                                    <i class="fas fa-cog mr-2">
                                     </i>
-                                    <span>
-                                        Settings
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="px-4 py-2">
-                        <span class="text-gray-500">
-                            Admin
-                        </span>
-                        <ul class="ml-4 mt-2">
-                            <li class="py-1">
-                                <a class="flex items-center space-x-2 text-gray-700" href="#">
-                                    <i class="fas fa-tools">
-                                    </i>
-                                    <span>
-                                        System Configuration
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a class="flex items-center space-x-2 text-gray-700" href="#">
-                                    <i class="fas fa-print">
-                                    </i>
-                                    <span>
-                                        Manage Printers
-                                    </span>
+                                    Settings
                                 </a>
                             </li>
                         </ul>
@@ -147,21 +104,17 @@
                         </span>
                         <ul class="ml-4 mt-2">
                             <li class="py-1">
-                                <a class="flex items-center space-x-2 text-gray-700" href="#">
-                                    <i class="fas fa-question-circle">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-question-circle mr-2">
                                     </i>
-                                    <span>
-                                        Help Center
-                                    </span>
+                                    Help Center
                                 </a>
                             </li>
                             <li class="py-1">
-                                <a class="flex items-center space-x-2 text-gray-700" href="#">
-                                    <i class="fas fa-comment-dots">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-comment-dots mr-2">
                                     </i>
-                                    <span>
-                                        Feedback
-                                    </span>
+                                    Feedback
                                 </a>
                             </li>
                         </ul>
@@ -213,7 +166,12 @@
                         {
                             <tr>
                                 <td class="py-2 px-4 border-b">@printer.brand</td>
-                                <td class="py-2 px-4 border-b">@printer.printerName</td>
+
+                                <td class="py-2 px-4 border-b">
+                                    <a asp-controller="PrintingLog" asp-action="Details" asp-route-printerId="@printer.printerId">
+                                        @printer.printerName
+                                    </a>
+                                </td>
                                 <td class="py-2 px-4 border-b">@printer.location.roomName, @printer.location.building.buildingName</td>
                                 <td class="py-2 px-4 border-b">@printer.paperCount</td>
                                 <td class="py-2 px-4 border-b">

@@ -34,6 +34,7 @@ namespace siu_smart_printing_service.Repositories
         {
             var query = _context.PrintersLogs
                 .Include(ft => ft.uploadFile)
+                .Include(pt => pt.printer)
                                     .Where(u => u.printerId == printerId);
 
 

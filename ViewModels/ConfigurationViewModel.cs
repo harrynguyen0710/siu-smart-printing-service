@@ -6,5 +6,6 @@ namespace siu_smart_printing_service.ViewModels
     {
         public IEnumerable<Configurations> Configs {  get; set; }
         public IEnumerable<FileTypes> FileTypes { get; set; }   
+        public Configurations Config { get; set; }
     }
 }

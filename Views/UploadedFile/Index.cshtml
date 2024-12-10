@@ -21,12 +21,12 @@
             <nav class="mt-6">
                 <ul>
                     <li class="px-4 py-2">
-                        <button class="w-full text-left text-blue-500 font-semibold">
+                        <a asp-controller="Printer" asp-action="PrintDocument" class="w-full text-left text-blue-500 font-semibold">
                             + New Print
-                        </button>
+                        </a>
                     </li>
                     <li class="px-4 py-2">
-                        <a class="flex items-center text-gray-700" href="#">
+                        <a asp-controller="Home" asp-action="Index" class="flex items-center text-gray-700">
                             <i class="fas fa-home mr-2">
                             </i>
                             Home
@@ -38,14 +38,14 @@
                         </span>
                         <ul class="ml-4 mt-2">
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a asp-controller="Printer" asp-action="Index" class="flex items-center text-gray-700">
                                     <i class="fas fa-list mr-2">
                                     </i>
                                     Printer List
                                 </a>
                             </li>
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a asp-controller="PrintingLog" asp-action="Index" class="flex items-center text-gray-700">
                                     <i class="fas fa-history mr-2">
                                     </i>
                                     Print History
@@ -59,7 +59,7 @@
                         </span>
                         <ul class="ml-4 mt-2">
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a asp-controller="UploadedFile" asp-action="Index" class="flex items-center text-gray-700">
                                     <i class="fas fa-file-alt mr-2">
                                     </i>
                                     My Files
@@ -80,21 +80,21 @@
                         </span>
                         <ul class="ml-4 mt-2">
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a class="flex items-center text-gray-700">
                                     <i class="fas fa-user mr-2">
                                     </i>
                                     Profile
                                 </a>
                             </li>
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a class="flex items-center text-gray-700">
                                     <i class="fas fa-credit-card mr-2">
                                     </i>
                                     SIU Payments
                                 </a>
                             </li>
                             <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
+                                <a asp-controller="Configuration" asp-action="Index" class="flex items-center text-gray-700">
                                     <i class="fas fa-cog mr-2">
                                     </i>
                                     Settings
@@ -155,6 +155,9 @@
             <p class="text-gray-600 mb-6">
                 Manage all your files in one place
             </p>
+            <a asp-controller="UploadedFile" asp-action="Upload"  class="btn btn-outline-success btn-sm">
+                Upload file
+            </a>
             <div class="grid grid-cols-3 gap-4">
                 <!-- File Card -->
                 @foreach(var file in Model)
