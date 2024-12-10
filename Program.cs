@@ -26,6 +26,7 @@ builder.Services.AddScoped<IPrintingLogsRepository, PrintingLogsRepository>();
 builder.Services.AddScoped<IUploadedFileRepository, UploadedFileRepository>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();  
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IConfigurationRepository, ConfigurationRepository>();    
 
 builder.Services.AddScoped<PrinterService>();
 builder.Services.AddScoped<FileTypeService>();
@@ -33,6 +34,7 @@ builder.Services.AddScoped<PrintingLogService>();
 builder.Services.AddScoped<UploadedFileService>();
 builder.Services.AddScoped<RoomService>();  
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<ConfigurationService>();
 
 
 builder.Services.AddIdentity<Users, IdentityRole>()

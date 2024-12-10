@@ -14,7 +14,7 @@ namespace siu_smart_printing_service.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var printers = await _printerService.GetAllPrinters();
+            var printers = await _printerService.GetAllActivePrinters();
             return View(printers);
         }
     }

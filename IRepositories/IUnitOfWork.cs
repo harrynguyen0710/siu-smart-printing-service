@@ -9,6 +9,7 @@
         IUploadedFileRepository UploadedFileRepository { get; }
         IRoomRepository RoomRepository { get; }
         IUserRepository UserRepository { get; }
+        IConfigurationRepository ConfigurationRepository { get; }
         Task<int> CompleteAsync();
     }
 }

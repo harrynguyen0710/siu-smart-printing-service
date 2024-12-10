@@ -15,6 +15,7 @@ namespace siu_smart_printing_service.Data
         public DbSet<PrintingLogs> PrintersLogs { get; set; }
         public DbSet<Rooms> Rooms { get; set; }
         public DbSet<UploadFile> UploadFiles { get; set; }
+        public DbSet<Configurations> Configurations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -170,6 +170,19 @@
             </nav>
         </div>
         <!-- Main Content -->
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div id="successMessage" class="fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg opacity-90 transition-all duration-300">
+                    <span>@successMessage</span>
+                </div>
+
+                <script>
+                    // Ẩn thông báo sau 5 giây
+                    setTimeout(function () {
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 5000);
+                </script>
+            }
         <div class="flex-1 p-6">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-semibold">
@@ -182,19 +195,7 @@
             <p class="text-gray-600 mb-4">
                 Manage printers in your school
             </p>
-            @if (!string.IsNullOrEmpty(successMessage))
-            {
-                <div id="successMessage" class="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg opacity-90 transition-all duration-300">
-                    <span>@successMessage</span>
-                </div>
 
-                <script>
-                    // Ẩn thông báo sau 5 giây
-                    setTimeout(function () {
-                        document.getElementById('successMessage').style.display = 'none';
-                    }, 5000);
-                </script>
-            }
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
                 <table class="min-w-full bg-white">
                     <thead>
