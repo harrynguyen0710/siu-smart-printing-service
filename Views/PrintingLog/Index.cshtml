@@ -1,6 +1,14 @@
-﻿@model IEnumerable<siu_smart_printing_service.Models.Printers>
-
-<body class="bg-gray-100">
+﻿@model siu_smart_printing_service.ViewModels.UserPrintingLog
+<html>
+<head>
+    <title>
+        Print History
+    </title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 font-sans">
     <div class="flex">
         <!-- Sidebar -->
         <div class="w-64 bg-white h-screen shadow-md">
@@ -122,7 +130,7 @@
         <div class="flex-1 p-6">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-bold">
-                    Printers
+                    History
                 </h1>
                 <div class="flex items-center">
                     <input class="border rounded-md p-2 mr-4" placeholder="Search..." type="text" />
@@ -131,89 +139,60 @@
                     </button>
                 </div>
             </div>
-            <p class="text-gray-600 mb-6">
-                All printers available in your school
+            <p class="text-gray-600 mb-4">
+                Your print history and ongoing print jobs
             </p>
-            @if (TempData["SuccessMessage"] != null || TempData["ErrorMessage"] != null)
-            {
-                <div id="popup" class="fixed top-4 right-4 px-4 py-3 rounded-md shadow-lg z-50"
-                     style="background-color:@(TempData["ErrorMessage"] != null ? "red" : "green"); color:white;">
-                    <i class="fas @(TempData["ErrorMessage"] != null ? "fa-exclamation-circle" : "fa-check-circle") mr-2"></i>
-                    @(TempData["SuccessMessage"] ?? TempData["ErrorMessage"])
-                </div>
-            }
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Printer Card -->
-                @foreach (var printer in Model)
-                {
-                    <div class="bg-white p-4 rounded-lg shadow-md">
-                        <div class="flex items-center mb-4">
-                            <img alt="Brother Printer" class="mr-4" height="50" src="https://storage.googleapis.com/a1aa/image/kH3KVGvY43qbKBls99uxGVyAL4Z0Cq0DAPureXyOhj7PfUsTA.jpg" width="50" />
-                            <div>
-                                <h2 class="font-bold">
-                                    @printer.brand
-                                </h2>
-                                <p class="text-gray-500">
-                                    @printer.printerName
-                                </p>
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <div class="flex items-center text-gray-700 mb-2">
-                                <i class="fa-solid fa-globe">
+            <p class="text-gray-600 mb-4">
+                Your current balance: @Model.User.balance pages
+            </p>
+            <table class="min-w-full bg-white border">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4 border-b">
+                            ID
+                        </th>
+                        <th class="py-2 px-4 border-b">
+                            File Name
+                        </th>
+                        <th class="py-2 px-4 border-b">
+                            Start Time
+                        </th>
+                        <th class="py-2 px-4 border-b">
+                            Printer
+                        </th>
+                        <th class="py-2 px-4 border-b">
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var log in Model.PrintingLogs)
+                    {
 
-                                </i>
-                                @if (printer.isActive)
-                                {
-                                    <p>Available</p>
-                                }
-                                else
-                                {
-                                    <p>Unavailable</p>
-                                }
-                            </div>
+                        <tr>
+                            <td class="py-2 px-4 border-b">
+                                @log.id
+                            </td>
+                            <td class="py-2 px-4 border-b text-blue-600">
+                                <a href="#">
+                                    @log.uploadFile.fileName
+                                </a>
+                            </td>
+                            <td class="py-2 px-4 border-b">
+                                @log.endDate
+                            </td>
+                            <td class="py-2 px-4 border-b">
+                                @log.printer.printerName
+                            </td>
+                            <td class="py-2 px-4 border-b text-blue-600">
+                                @log.status
+                            </td>
+                        </tr>
+                    }
 
-                            <div class="flex items-center text-gray-700 mb-2">
-                                <i class="fas fa-file-alt mr-2">
-                                </i>
-                                @printer.paperCount
-                            </div>
-
-                            <div class="flex items-center text-gray-700 mb-2">
-                                <i class="fa-solid fa-info">
-
-                                </i>
-                                @printer.description
-                            </div>
-
-                            <div class="flex items-center text-gray-700">
-                                <i class="fas fa-map-marker-alt mr-2">
-                                </i>
-                                @printer.location.roomName, @printer.location.building.buildingName, @printer.location.building.campus.campusName
-                            </div>
-                        </div>
-                        <a asp-controller="PrintingLog" asp-action="PrintDocument" asp-route-printerId="@printer.printerId"
-                           class="w-full bg-blue-500 text-white py-2 rounded-md text-center font-semibold flex items-center justify-center hover:bg-blue-600 transition duration-200 ease-in-out shadow-lg">
-                            <span>Print</span>
-                            <i class="fas fa-chevron-right ml-2"></i>
-                        </a>
-
-                    </div>
-
-                }
-
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const popup = document.getElementById('popup');
-            if (popup) {
-                setTimeout(() => {
-                    popup.style.display = 'none';
-                }, 3000); // 3000 milliseconds = 3 seconds
-            }
-        });
-    </script>
 </body>
+</html>

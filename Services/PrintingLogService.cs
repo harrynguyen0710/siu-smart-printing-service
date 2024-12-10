@@ -17,15 +17,15 @@ namespace siu_smart_printing_service.Services
             await _unitOfWork.CompleteAsync();
         }
 
-        public async Task<IEnumerable<PrintingLogs>> GetAllPrintingLogsByUserId(string userId, int page, int pageSize, bool ascOrder)
+        public async Task<IEnumerable<PrintingLogs>> GetAllPrintingLogsByUserId(string userId)
         {
-            var printingLogs = await _unitOfWork.PrintingLogsRepository.GetAllPrintingLogsByUserId(userId, page, pageSize, ascOrder);
+            var printingLogs = await _unitOfWork.PrintingLogsRepository.GetAllPrintingLogsByUserId(userId);
             return printingLogs;
         }
 
-        public async Task<IEnumerable<PrintingLogs>> GetAllPrintingLogsIByPrinterId(int printerId, int page, int pageSize, bool ascOrder)
+        public async Task<IEnumerable<PrintingLogs>> GetAllPrintingLogsIByPrinterId(int printerId)
         {
-            var printingLogs = await _unitOfWork.PrintingLogsRepository.GetAllPrintingLogsIByPrinterId(printerId, page, pageSize, ascOrder);
+            var printingLogs = await _unitOfWork.PrintingLogsRepository.GetAllPrintingLogsIByPrinterId(printerId);
             return printingLogs;
         }
 

@@ -149,12 +149,13 @@
                 </button>
                 <form asp-controller="PrintingLog" asp-action="PrintDocument" method="post">
                     <!-- Popup Notification -->
-                    @if (TempData["InvalidType"] != null || TempData["InvalidQuatity"] != null)
+                    @if (TempData["InvalidType"] != null || TempData["InvalidQuatity"] != null || TempData["InvalidBalance"] != null)
                     {
                         <div id="popup" class="fixed top-5 right-5 bg-red-500 text-white p-4 rounded-md shadow-lg">
                             <span>
                                 @TempData["InvalidType"]
                                 @TempData["InvalidQuatity"]
+                                @TempData["InvalidBalance"]
                             </span>
                         </div>
                     }
