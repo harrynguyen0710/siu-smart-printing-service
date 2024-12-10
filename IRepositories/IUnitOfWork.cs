@@ -8,6 +8,7 @@
         IPrintingLogsRepository PrintingLogsRepository { get; }
         IUploadedFileRepository UploadedFileRepository { get; }
         IRoomRepository RoomRepository { get; }
+        IUserRepository UserRepository { get; }
         Task<int> CompleteAsync();
     }
 }

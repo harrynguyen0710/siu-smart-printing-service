@@ -18,18 +18,27 @@ namespace siu_smart_printing_service.Controllers
         private readonly UserManager<Users> _userManager;
         private readonly PrintingLogService _printingLogService;
         private readonly FileTypeService _fileTypeService;
+        private readonly UserService _userService;
         public PrintingLogController(PrinterService printerService, UploadedFileService uploadFileService, 
-            UserManager<Users> userManager, PrintingLogService printingLogService, FileTypeService fileTypeService) 
+            UserManager<Users> userManager, PrintingLogService printingLogService, FileTypeService fileTypeService, UserService userService) 
         {
             _printerService = printerService;
             _uploadedFileService = uploadFileService;
             _userManager = userManager;
             _printingLogService = printingLogService;
             _fileTypeService = fileTypeService;
+            _userService = userService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var user = await _userManager.GetUserAsync(User);
+            var printingLogs = await _printingLogService.GetAllPrintingLogsByUserId(user.Id);
+            var userPrintingLogs = new UserPrintingLog
+            {
+                User = user,
+                PrintingLogs = printingLogs,
+            };
+            return View(userPrintingLogs);
         }
 
         public async Task<IActionResult> PrintDocument(int printerId)
@@ -81,15 +90,25 @@ namespace siu_smart_printing_service.Controllers
                 return RedirectToAction("PrintDocument", new { printerId = printer.printerId });
             }
 
+            var remaininBalance = user.balance - model.PrintingLog.numberOfCopies;
+            if (remaininBalance < 0)
+            {
+                TempData["InvalidBalance"] = "You do not enough page for printing!";
+                return RedirectToAction("PrintDocument", new { printerId = printer.printerId });
+            }
 
 
+            model.PrintingLog.status = "Successful";
             model.PrintingLog.printerId = model.Printer.printerId;
             model.PrintingLog.startDate = DateTime.Now;
             model.PrintingLog.endDate = DateTime.Now;
             model.PrintingLog.uploadFileId = model.UploadFile.id;
 
             printer.paperCount = remainingPages;
+            user.balance = remaininBalance;
 
+            await _printerService.EditPrinter(printer);
+            await _userService.Update(user);
             await _printingLogService.PrintDocument(model.PrintingLog);
 
 

@@ -11,24 +11,25 @@ namespace siu_smart_printing_service.Repositories
         {
         }
 
-        public async Task<IEnumerable<PrintingLogs>> GetAllPrintingLogsByUserId(string userId, int page, int pageSize, bool ascOrder = true)
+        public async Task<IEnumerable<PrintingLogs>> GetAllPrintingLogsByUserId(string userId)
         {
             var query = _context.PrintersLogs
+                .Include(ft => ft.printer)
+                .Include(pt => pt.uploadFile)
                                     .Where(u => u.uploadFile.userId == userId);
 
-            query = ascOrder ? query.OrderBy(u => u.startDate) : query.OrderByDescending(u => u.startDate);
 
-            return await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+            return await query.ToListAsync();
         }
 
-        public async Task<IEnumerable<PrintingLogs>> GetAllPrintingLogsIByPrinterId(int printerId, int page, int pageSize, bool ascOrder = true)
+        public async Task<IEnumerable<PrintingLogs>> GetAllPrintingLogsIByPrinterId(int printerId)
         {
             var query = _context.PrintersLogs
+                .Include(ft => ft.uploadFile)
                                     .Where(u => u.printerId == printerId);
 
-            query = ascOrder ? query.OrderBy(u => u.startDate) : query.OrderByDescending(u => u.startDate);
 
-            return await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+            return await query.ToListAsync();
         }
 
         public async Task<IEnumerable<PrintingLogs>> SearchPrintingLogsByName(string keyword)
