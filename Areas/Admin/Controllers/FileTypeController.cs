@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using siu_smart_printing_service.Areas.Admin.Services;
 using siu_smart_printing_service.Models;
 
 namespace siu_smart_printing_service.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class FileTypeController : Controller
     {
         private readonly FileTypeService _fileTypeService;

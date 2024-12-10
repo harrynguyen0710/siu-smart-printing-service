@@ -12,6 +12,13 @@ namespace siu_smart_printing_service.Repositories
 
         }
 
+        public async Task<UploadFile> GetFileById(int fileId)
+        {
+            var file = await _context.UploadFiles.Where(pt => pt.id == fileId)
+                .Include(ft => ft.fileTypes).FirstOrDefaultAsync();
+            return file;
+        }
+
         public async Task<IEnumerable<UploadFile>> GetAllFileByUserId(string userId)
         {
             var files = await _context.UploadFiles

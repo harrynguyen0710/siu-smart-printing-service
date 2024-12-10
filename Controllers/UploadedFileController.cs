@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using siu_smart_printing_service.Areas.Admin.Services;
@@ -7,6 +8,7 @@ using siu_smart_printing_service.Services;
 
 namespace siu_smart_printing_service.Controllers
 {
+    [Authorize]
     public class UploadedFileController : Controller
     {
         private readonly UploadedFileService _uploadedFileService;
