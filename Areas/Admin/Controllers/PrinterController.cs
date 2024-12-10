@@ -35,18 +35,10 @@ namespace siu_smart_printing_service.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(Printers printer)
         {
-            if (ModelState.IsValid)
-            {
-                await _printerService.AddPrinter(printer);
+            await _printerService.AddPrinter(printer);
+            TempData["SuccessMessage"] = "Add successful";
+            return RedirectToAction("Index");
 
-                TempData["SuccessMessage"] = "Operation successful";
-
-                return RedirectToAction("Index");
-            }
-
-            var rooms = await _roomService.GetAllAsync();
-            ViewBag.Rooms = new SelectList(rooms, "roomId", "roomName");
-            return View(printer);
         }
 
         [HttpGet]
@@ -63,18 +55,13 @@ namespace siu_smart_printing_service.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Printers printer)
         {
-            if (ModelState.IsValid)
-            {
-                await _printerService.EditPrinter(printer);
 
-                TempData["SuccessMessage"] = "Operation successful";
+            await _printerService.EditPrinter(printer);
 
-                return RedirectToAction("Index");
-            }
+            TempData["SuccessMessage"] = "Edit successful";
 
-            var rooms = await _roomService.GetAllAsync();
-            ViewBag.Rooms = new SelectList(rooms, "roomId", "roomName");
-            return View(printer);
+            return RedirectToAction("Index");
+
         }
 
 
