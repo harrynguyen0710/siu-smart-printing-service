@@ -128,6 +128,19 @@
         </div>
         <!-- Main Content -->
         <div class="w-4/5 p-6">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div id="success-popup" class="fixed top-10 right-10 bg-green-500 text-white p-4 rounded-md shadow-md">
+                    <p>@TempData["SuccessMessage"]</p>
+                </div>
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div id="error-popup" class="fixed top-10 right-10 bg-red-500 text-white p-4 rounded-md shadow-md">
+                    <p>@TempData["ErrorMessage"]</p>
+                </div>
+            }
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-bold">
                     My Files

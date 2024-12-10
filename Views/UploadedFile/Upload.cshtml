@@ -163,6 +163,19 @@
                         </button>
                     </div>
                 </div>
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div id="success-popup" class="fixed top-10 right-10 bg-green-500 text-white p-4 rounded-md shadow-md">
+                            <p>@TempData["SuccessMessage"]</p>
+                        </div>
+                    }
+
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div id="error-popup" class="fixed top-10 right-10 bg-red-500 text-white p-4 rounded-md shadow-md">
+                            <p>@TempData["ErrorMessage"]</p>
+                        </div>
+                    }
                 <div class="border-dashed border-2 border-gray-300 p-6 rounded-md text-center">
                     <form asp-controller="UploadedFile" asp-action="Upload" method="post" enctype="multipart/form-data" class="text-center">
                         <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
@@ -190,12 +203,19 @@
                         </button>
                     </form>
                 </div>
-
                 <div class="flex justify-end mt-4">
                     <button class="bg-blue-600 text-white py-2 px-4 rounded-md">
                         Next
                     </button>
                 </div>
+                <script>
+                    setTimeout(function () {
+                        var successPopup = document.getElementById('success-popup');
+                        var errorPopup = document.getElementById('error-popup');
+                        if (successPopup) successPopup.style.display = 'none';
+                        if (errorPopup) errorPopup.style.display = 'none';
+                    }, 5000);
+                </script>
             </div>
         </div>
     </div>

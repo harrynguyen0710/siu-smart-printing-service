@@ -2,215 +2,98 @@
 
 <html>
 <head>
-    <title>
-        System Configuration
-    </title>
-    <script src="https://cdn.tailwindcss.com">
-    </script>
+    <title>System Configuration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
 </head>
 <body class="bg-gray-100 font-sans">
     <div class="flex">
         <!-- Sidebar -->
         <div class="w-64 bg-white h-screen shadow-md">
-            <div class="p-4 flex items-center">
-                <img alt="Logo" class="w-10 h-10 mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/Vznp30U83D5EJhzpC9JIU8gZAtrxnLxvHtueYie76yYAlUsTA.jpg" width="40" />
-                <span class="text-xl font-semibold">
-                    Smart Student Printing Service
-                </span>
-            </div>
-            <nav class="mt-6">
-                <ul>
-                    <li class="px-4 py-2">
-                        <button class="w-full text-left text-blue-500 font-semibold">
-                            + New Print
-                        </button>
-                    </li>
-                    <li class="px-4 py-2">
-                        <a class="flex items-center text-gray-700" href="#">
-                            <i class="fas fa-home mr-2">
-                            </i>
-                            Home
-                        </a>
-                    </li>
-                    <li class="px-4 py-2">
-                        <span class="text-gray-500">
-                            Printing
-                        </span>
-                        <ul class="ml-4 mt-2">
-                            <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
-                                    <i class="fas fa-list mr-2">
-                                    </i>
-                                    Printer List
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
-                                    <i class="fas fa-history mr-2">
-                                    </i>
-                                    Print History
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="px-4 py-2">
-                        <span class="text-gray-500">
-                            Storage
-                        </span>
-                        <ul class="ml-4 mt-2">
-                            <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
-                                    <i class="fas fa-file-alt mr-2">
-                                    </i>
-                                    My Files
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
-                                    <i class="fas fa-plug mr-2">
-                                    </i>
-                                    Integrations
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="px-4 py-2">
-                        <span class="text-gray-500">
-                            Accounts
-                        </span>
-                        <ul class="ml-4 mt-2">
-                            <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
-                                    <i class="fas fa-user mr-2">
-                                    </i>
-                                    Profile
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
-                                    <i class="fas fa-credit-card mr-2">
-                                    </i>
-                                    SIU Payments
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
-                                    <i class="fas fa-cog mr-2">
-                                    </i>
-                                    Settings
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="px-4 py-2">
-                        <span class="text-gray-500">
-                            Help
-                        </span>
-                        <ul class="ml-4 mt-2">
-                            <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
-                                    <i class="fas fa-question-circle mr-2">
-                                    </i>
-                                    Help Center
-                                </a>
-                            </li>
-                            <li class="py-1">
-                                <a class="flex items-center text-gray-700" href="#">
-                                    <i class="fas fa-comment-dots mr-2">
-                                    </i>
-                                    Feedback
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+            <!-- Sidebar content -->
         </div>
+
         <!-- Main Content -->
         <div class="flex-1 p-6">
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div id="success-popup" class="fixed top-10 right-10 bg-green-500 text-white p-4 rounded-md shadow-md">
+                    <p>@TempData["SuccessMessage"]</p>
+                </div>
+            }
+
             <div class="flex justify-between items-center mb-6">
-                <h1 class="text-2xl font-bold">
-                    System Configuration
-                </h1>
+                <h1 class="text-2xl font-bold">System Configuration</h1>
                 <div class="flex items-center">
                     <input class="border rounded px-4 py-2 mr-4" placeholder="Search..." type="text" />
                     <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-                        <span class="text-lg font-semibold">
-                            M
-                        </span>
+                        <span class="text-lg font-semibold">M</span>
                     </div>
                 </div>
             </div>
+
             <div class="bg-white p-6 rounded shadow-md">
-                @foreach(var config in Model.Configs)
+                @foreach (var config in Model.Configs)
                 {
                     <div class="mb-4">
-                        <label class="block text-gray-700 font-semibold mb-2">
-                            Default Page Balance
-                        </label>
-                        <div class="w-full border rounded px-4 py-2" type="text" >@config.defaultBalance</div>/>
+                        <label class="block text-gray-700 font-semibold mb-2">Default Page Balance</label>
+                        <div class="w-full border rounded px-4 py-2">@config.defaultBalance</div>
                     </div>
+
                     <div class="mb-4">
-                        <label class="block text-gray-700 font-semibold mb-2">
-                            Date to grant default page balance
-                        </label>
-                        <p class="text-gray-500 mb-2">
-                            On this date, the default page balance will be granted to all students
-                        </p>
+                        <label class="block text-gray-700 font-semibold mb-2">Date to grant default page balance</label>
+                        <p class="text-gray-500 mb-2">On this date, the default page balance will be granted to all students</p>
                         <div class="flex space-x-4">
-                            <div class="w-1/4 border rounded px-4 py-2" >@config.defaultDate</div>/>
+                            <div class="w-1/4 border rounded px-4 py-2">@config.defaultDate</div>
                         </div>
                     </div>
+
                     <div class="mb-4">
-                        <label class="block text-gray-700 font-semibold mb-2">
-                            Max File Size (in bytes)
-                        </label>
-                        <input class="w-full border rounded px-4 py-2" type="text" value="@config.maxSizeBytes" readonly/>
+                        <label class="block text-gray-700 font-semibold mb-2">Max File Size (in bytes)</label>
+                        <input class="w-full border rounded px-4 py-2" type="text" value="@config.maxSizeBytes" readonly />
                     </div>
-
                 }
+
                 <div class="mb-6">
-                    <label class="block text-gray-700 font-semibold mb-4">
-                        Permitted File Types
-                    </label>
+                    <label class="block text-gray-700 font-semibold mb-4">Permitted File Types</label>
                     <div class="space-y-4">
-                        @foreach(var type in Model.FileTypes)
-            {
-                        <div class="flex items-center space-x-4 bg-white-50 p-4">
-                            <div class="w-1/3">
-                                <label for="type-name" class="block text-sm font-semibold text-gray-600 mb-2">Type</label>
-                                <input readonly id="type-name" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value="@type.name" />
+                        @foreach (var type in Model.FileTypes)
+                        {
+                            <div class="flex items-center space-x-4 bg-white-50 p-4">
+                                <div class="w-1/3">
+                                    <label for="type-name" class="block text-sm font-semibold text-gray-600 mb-2">Type</label>
+                                    <input readonly id="type-name" class="w-full border border-gray-300 rounded px-4 py-2" type="text" value="@type.name" />
+                                </div>
+                                <div class="w-1/3">
+                                    <label for="description" class="block text-sm font-semibold text-gray-600 mb-2">Description</label>
+                                    <input readonly id="description" class="w-full border border-gray-300 rounded px-4 py-2" type="text" value="@type.description" />
+                                </div>
+                                <div class="w-1/4 flex justify-center items-center">
+                                    <label class="inline-flex items-center">
+                                        <input disabled class="h-5 w-5 text-blue-600 border-gray-300 rounded" type="checkbox" @(type.isAccepted ? "checked" : null) />
+                                        <span class="ml-2 text-gray-700">Allow Upload</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="w-1/3">
-                                <label for="description" class="block text-sm font-semibold text-gray-600 mb-2">Description</label>
-                                <input readonly id="description" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value="@type.description" />
-                            </div>
-                            <div class="w-1/4 flex justify-center items-center">
-                                <label class="inline-flex items-center">
-                                    <input disabled
-                                           class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-                                           type="checkbox"
-                                           @(type.isAccepted ? "checked" : null) />
-                                    <span class="ml-2 text-gray-700">Allow Upload</span>
-                                </label>
-                            </div>
-
-
-                        </div>
-
-            }
-
+                        }
                     </div>
                 </div>
 
                 <div class="mt-6 flex justify-end">
-                    <button class="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-700">
-                        Update
-                    </button>
+                    <button class="bg-blue-600 text-white px-6 py-2 rounded shadow-md hover:bg-blue-700">Update</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        setTimeout(function () {
+            var successPopup = document.getElementById('success-popup');
+            if (successPopup) {
+                successPopup.style.display = 'none';
+            }
+        }, 5000);
+    </script>
 </body>
 </html>
