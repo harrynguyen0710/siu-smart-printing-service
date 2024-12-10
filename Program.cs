@@ -37,9 +37,23 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<ConfigurationService>();
 
 
-builder.Services.AddIdentity<Users, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();
+builder.Services.AddIdentity<Users, IdentityRole>(options =>
+{
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.RequireUniqueEmail = true;
+
+    options.SignIn.RequireConfirmedAccount = false;
+    options.SignIn.RequireConfirmedEmail = false;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
+
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 0;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders();
 
 
 // Build the connection string
@@ -50,12 +64,56 @@ builder.Services.AddIdentity<Users, IdentityRole>()
 //    options.UseSqlServer(connectionString)
 //);
 
+
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PrinterApplication"))
 );
 
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var roleManger = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var roles = new[] { "Admin", "Student" };
+
+    foreach (var role in roles)
+    {
+        if (!await roleManger.RoleExistsAsync(role))
+            await roleManger.CreateAsync(new IdentityRole(role));
+    }
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Users>>();
+    string email = "admin@gmail.com";
+    string emailtStaff = "student@gmail.com";
+    string pass = "1002";
+    double balance = 5000;
+    string fullName = "Test Account";
+    if (await userManager.FindByEmailAsync(email) == null)
+    {
+        var user = new Users();
+        user.UserName = email;
+        user.Email = email;
+        user.balance = balance;
+        user.fullName = fullName;
+        await userManager.CreateAsync(user, pass);
+        await userManager.AddToRoleAsync(user, "Admin");
+    }
+    if (await userManager.FindByEmailAsync(emailtStaff) == null)
+    {
+        var user = new Users();
+        user.fullName = fullName;
+        user.UserName = emailtStaff;
+        user.Email = emailtStaff;
+        user.balance = balance;
+        await userManager.CreateAsync(user, pass);
+        await userManager.AddToRoleAsync(user, "Student");
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
