@@ -134,6 +134,14 @@
             <p class="text-gray-600 mb-6">
                 All printers available in your school
             </p>
+            @if (TempData["SuccessMessage"] != null || TempData["ErrorMessage"] != null)
+            {
+                <div id="popup" class="fixed top-4 right-4 px-4 py-3 rounded-md shadow-lg z-50"
+                     style="background-color:@(TempData["ErrorMessage"] != null ? "red" : "green"); color:white;">
+                    <i class="fas @(TempData["ErrorMessage"] != null ? "fa-exclamation-circle" : "fa-check-circle") mr-2"></i>
+                    @(TempData["SuccessMessage"] ?? TempData["ErrorMessage"])
+                </div>
+            }
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Printer Card -->
                 @foreach (var printer in Model)
@@ -184,11 +192,11 @@
                                 @printer.location.roomName, @printer.location.building.buildingName, @printer.location.building.campus.campusName
                             </div>
                         </div>
-                        <button class="w-full bg-gray-100 text-gray-700 py-2 rounded-md">
+                        <a asp-controller="PrintingLog" asp-action="PrintDocument" asp-route-printerId="@printer.printerId" class="w-full bg-gray-100 text-gray-700 py-2 rounded-md">
                             Print
                             <i class="fas fa-chevron-right ml-2">
                             </i>
-                        </button>
+                        </a>
                     </div>
 
                 }
@@ -196,4 +204,15 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function hidePopup() {
+            const popup = document.getElementById('popup');
+            if (popup) {
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 3000);
+            }
+        }
+    </script>
 </body>

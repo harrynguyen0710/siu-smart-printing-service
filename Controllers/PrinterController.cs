@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using siu_smart_printing_service.Areas.Admin.Services;
 
 namespace siu_smart_printing_service.Controllers
 {
+    [Authorize]
     public class PrinterController : Controller
     {
         private readonly PrinterService _printerService;

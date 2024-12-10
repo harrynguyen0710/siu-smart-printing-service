@@ -1,0 +1,296 @@
+﻿@model siu_smart_printing_service.ViewModels.PrintingLogViewModel
+<html>
+<head>
+    <title>
+        New Print Job
+    </title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white h-screen shadow-md">
+            <div class="p-4 flex items-center">
+                <img alt="Logo" class="w-10 h-10 mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/Vznp30U83D5EJhzpC9JIU8gZAtrxnLxvHtueYie76yYAlUsTA.jpg" width="40" />
+                <span class="text-xl font-semibold">
+                    Smart Student Printing Service
+                </span>
+            </div>
+            <nav class="mt-6">
+                <ul>
+                    <li class="px-4 py-2">
+                        <button class="w-full text-left text-blue-500 font-semibold">
+                            + New Print
+                        </button>
+                    </li>
+                    <li class="px-4 py-2">
+                        <a class="flex items-center text-gray-700" href="#">
+                            <i class="fas fa-home mr-2">
+                            </i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Printing
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-list mr-2">
+                                    </i>
+                                    Printer List
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-history mr-2">
+                                    </i>
+                                    Print History
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Storage
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-file-alt mr-2">
+                                    </i>
+                                    My Files
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-plug mr-2">
+                                    </i>
+                                    Integrations
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Accounts
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-user mr-2">
+                                    </i>
+                                    Profile
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-credit-card mr-2">
+                                    </i>
+                                    SIU Payments
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-cog mr-2">
+                                    </i>
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="px-4 py-2">
+                        <span class="text-gray-500">
+                            Help
+                        </span>
+                        <ul class="ml-4 mt-2">
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-question-circle mr-2">
+                                    </i>
+                                    Help Center
+                                </a>
+                            </li>
+                            <li class="py-1">
+                                <a class="flex items-center text-gray-700" href="#">
+                                    <i class="fas fa-comment-dots mr-2">
+                                    </i>
+                                    Feedback
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-semibold">
+                    New Print Job
+                </h1>
+                <div class="flex items-center space-x-4">
+                    <input class="border rounded-md py-2 px-4" placeholder="Search..." type="text" />
+                    <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+                        <span class="text-lg font-semibold">
+                            N
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-md shadow-md">
+                <button class="text-blue-600 mb-4">
+                    <i class="fas fa-arrow-left">
+                    </i>
+                    Back
+                </button>
+                <form asp-controller="PrintingLog" asp-action="PrintDocument" method="post">
+                    <!-- Popup Notification -->
+                    @if (TempData["InvalidType"] != null || TempData["InvalidQuatity"] != null)
+                    {
+                        <div id="popup" class="fixed top-5 right-5 bg-red-500 text-white p-4 rounded-md shadow-lg">
+                            <span>
+                                @TempData["InvalidType"]
+                                @TempData["InvalidQuatity"]
+                            </span>
+                        </div>
+                    }
+                    <div class="flex space-x-6 mb-6">
+                        <div class="flex-1 p-4 border rounded-md">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <img alt="Printer Image" class="w-16 h-16" height="60" src="https://storage.googleapis.com/a1aa/image/CQV159Gjdr5FOhInkeQsukUemz8dyMZNyZlDZVZOWVcxYVsTA.jpg" width="60" />
+                                <div>
+                                    <h2 class="text-lg font-semibold">
+                                        @Model.Printer?.brand
+                                        Test
+                                    </h2>
+                                    <p class="text-gray-500">
+                                        @Model.Printer?.printerName
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 text-gray-500">
+                                <span class="border px-2 py-1 rounded-md">
+                                    A4
+                                </span>
+                                <span class="border px-2 py-1 rounded-md">
+                                    A3
+                                </span>
+                                <span class="border px-2 py-1 rounded-md">
+                                    US
+                                </span>
+                                <span class="border px-2 py-1 rounded-md">
+                                    Print
+                                </span>
+                                <span class="border px-2 py-1 rounded-md">
+                                    Double Sided
+                                </span>
+                                <span class="border px-2 py-1 rounded-md">
+                                    @Model.Printer?.paperCount pages
+                                </span>
+                                <span class="border px-2 py-1 rounded-md">
+                                    A6 101
+                                </span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="Printer.printerId" value="@Model.Printer?.printerId" />
+                        <input type="hidden" name="PrintingLog.uploadFileId" value="@Model.UploadFile?.id" />
+
+                        <div class="flex-1 p-4 border rounded-md">
+                            <div class="text-blue-600 mt-4">
+                                Select another file
+                                <label class="block text-gray-700 mb-4">Select File</label>
+                                <select asp-for="UploadFile.id" class="form-control" required>
+                                    @foreach (var file in ViewBag.Files)
+                                    {
+                                        <option value="@file.Value">@file.Text</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold mb-2">
+                            Select printing properties
+                        </h3>
+                        <p class="text-gray-500 mb-4">
+                            Select how you would like to print your file
+                        </p>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700">
+                                    Paper Size
+                                </label>
+                                <select asp-for="@Model.PrintingLog.pageSize" class="w-full border rounded-md py-2 px-4">
+                                    @foreach (var paperSize in Model.PaperSizes)
+                                    {
+                                        <option value="@paperSize.Value">
+                                            @paperSize.Text
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+
+
+
+                            <div>
+                                <label asp-for="@Model.PrintingLog.numberOfCopies" class="block text-gray-700">
+                                    Number Of Copies
+                                </label>
+                                <input asp-for="@Model.PrintingLog.numberOfCopies" type="number" />
+                            </div>
+
+                            <div>
+                                <label asp-for="@Model.PrintingLog.isDoubleSided" class="block text-gray-700">
+                                    Print Side
+                                </label>
+                                <select asp-for="@Model.PrintingLog.isDoubleSided" class="w-full border rounded-md py-2 px-4">
+                                    <option value="@false">
+                                        Single-sided
+                                    </option>
+                                    <option value="@true">
+                                        Double-sided
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700">
+                                    Color
+                                </label>
+                                <select class="w-full border rounded-md py-2 px-4">
+                                    <option>
+                                        Black &amp; White
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md">
+                        Print
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+<script>
+    // Automatically hide the popup after 3 seconds
+    function hidePopup() {
+        const popup = document.getElementById('popup');
+        if (popup) {
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 3000);
+        }
+    }
+
+    // Call the function to hide the popup
+    hidePopup();
+</script>

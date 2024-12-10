@@ -17,6 +17,12 @@ namespace siu_smart_printing_service.Services
             return files;
         }
 
+        public async Task<UploadFile> GetById(int fileId)
+        {
+            var file = await _unitOfWork.UploadedFileRepository.GetFileById(fileId);   
+            return file;    
+        }
+
 
         public async Task Add(UploadFile file)
         {
